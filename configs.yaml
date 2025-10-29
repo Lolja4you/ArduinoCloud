@@ -1,0 +1,4 @@
+logging:
+  console: 1
+  file: logs/app.log
+  level: INFO

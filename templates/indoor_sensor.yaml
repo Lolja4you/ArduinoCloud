@@ -1,0 +1,47 @@
+template_name: "weather_station"
+template_version: "1.0"
+description: "Метеостанция с датчиками BME280"
+
+database:
+  db_name: "weather_station.db"
+  driver: "sqlite"
+
+sensors:
+  - sensor_id: "0x76"
+    table_name: "indoor_sensor"
+    fields:
+      - name: "temperature"
+        source: "Temperature"
+        db_type: "REAL"
+        unit: "°C"
+        description: "Температура в помещении"
+        
+      - name: "pressure"
+        source: "Pressure" 
+        db_type: "REAL"
+        unit: "hPa"
+        description: "Атмосферное давление"
+        
+      - name: "humidity"
+        source: "Humidity"
+        db_type: "REAL"
+        unit: "%"
+        description: "Влажность воздуха"
+
+  - sensor_id: "0x77"
+    table_name: "outdoor_sensor"
+    fields:
+      - name: "temperature"
+        source: "Temperature"
+        db_type: "REAL"
+        unit: "°C"
+        
+      - name: "pressure"
+        source: "Pressure"
+        db_type: "REAL"
+        unit: "hPa"
+
+parsing:
+  delimiter: ";"
+  key_value_separator: ":"
+  data_format: "Sensor:{id};{field1}:{value1};{field2}:{value2};"
